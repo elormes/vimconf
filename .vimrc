@@ -1,7 +1,7 @@
 "Installed vim-plug using 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 "
-"    Installed Plugins
+"Installed Plugins
 call plug#begin()
 Plug 'https://github.com/python-mode/python-mode.git'
 call plug#end()
@@ -26,3 +26,10 @@ set splitright
 
 "Settings for python-mode
 let g:pymode_python = 'python3'
+
+"Copying and pasting from clipboard
+vnoremap <C-c> "+y
+nnoremap <C-v> "+p
+
+"Prevent vim from clearing the clipboard on exit
+autocmd VimLeave * call system("xsel -ib", getreg('+'))

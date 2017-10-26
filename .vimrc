@@ -33,3 +33,14 @@ nnoremap <C-v> "+p
 
 "Prevent vim from clearing the clipboard on exit
 autocmd VimLeave * call system("xsel -ib", getreg('+'))
+
+"Change color of python-mode width
+hi ColorColumn ctermbg=8
+
+"Enable mouse support
+set mouse+=a
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+

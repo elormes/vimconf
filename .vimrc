@@ -4,6 +4,9 @@
 "Installed Plugins
 call plug#begin()
 Plug 'https://github.com/python-mode/python-mode.git'
+Plug 'mattn/emmet-vim'
+Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 "Enable folding
@@ -43,4 +46,3 @@ if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
 endif
-

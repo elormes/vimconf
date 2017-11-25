@@ -46,3 +46,13 @@ if &term =~ '^screen'
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
 endif
+
+"Close vim if only open window is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"Open NERDTree with shortcut
+map <C-n> :NERDTreeToggle<CR>
+
+"Fix vim color change in tmux
+set background=dark
+set t_Co=256

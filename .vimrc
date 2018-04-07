@@ -13,6 +13,8 @@ Plug 'git://github.com/jiangmiao/auto-pairs.git'
 Plug 'https://github.com/ap/vim-buftabline.git'
 call plug#end()
 
+:let mapleader = "-"
+
 "Enable folding
 set foldmethod=indent
 set foldlevel=99
@@ -79,3 +81,6 @@ endif
 
 "Toggle TagBar with F8	
 map <F8> :TagbarToggle<CR>
+
+nmap <leader>l :bnext<CR>
+nmap <leader>h :bprevious<CR>

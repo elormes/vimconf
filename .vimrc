@@ -7,6 +7,10 @@ Plug 'https://github.com/python-mode/python-mode.git'
 Plug 'mattn/emmet-vim'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'https://github.com/pangloss/vim-javascript.git'
+Plug 'git://github.com/majutsushi/tagbar'
+Plug 'git://github.com/jiangmiao/auto-pairs.git'
+Plug 'https://github.com/ap/vim-buftabline.git'
 call plug#end()
 
 "Enable folding
@@ -56,3 +60,22 @@ map <C-n> :NERDTreeToggle<CR>
 "Fix vim color change in tmux
 set background=dark
 set t_Co=256
+
+set hidden
+set nowrap
+
+"Change cursor shape in different modes
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' | 
+    \   silent execute '!echo -ne "\e[5 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
+
+
+"Toggle TagBar with F8	
+map <F8> :TagbarToggle<CR>

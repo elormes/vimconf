@@ -1,3 +1,19 @@
+"Force to use python
+if has('python')
+endif
+
+" easier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+let g:python_host_prog = '/usr/bin/python2.7'
+let g:python3_host_prog = '/usr/bin/python3.6'
+
 "Installed vim-plug using 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 "
@@ -10,7 +26,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'https://github.com/pangloss/vim-javascript.git'
 Plug 'git://github.com/majutsushi/tagbar'
 Plug 'git://github.com/jiangmiao/auto-pairs.git'
-Plug 'https://github.com/ap/vim-buftabline.git'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'https://github.com/kien/ctrlp.vim.git'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -20,9 +38,20 @@ else
 endif
 call plug#end()
 
-let g:deoplete#enable_at_startup = 1
+" Settings for ctrlp
+let g:ctrlp_max_height = 30
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=*/coverage/*
 
+let g:deoplete#enable_at_startup = 1
 :let mapleader = "-"
+
+"Show buffers
+let g:airline#extensions#tabline#enabled = 1
+
+"Show only filename in bufferline
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 "Enable folding
 set foldmethod=indent
@@ -43,7 +72,7 @@ set splitbelow
 set splitright
 
 "Settings for python-mode
-let g:pymode_python = 'python3'
+let g:pymode_python = 'python'
 
 "Copying and pasting from clipboard
 vnoremap <C-c> "+y
@@ -93,3 +122,31 @@ map <F8> :TagbarToggle<CR>
 
 nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
+
+"Close buffer without closing window with NERDTree
+nnoremap <leader>q :bp<cr>:bd #<cr>
+
+"Disable deocomplete autocompletion
+"let g:deoplete#disable_auto_complete = 1
+
+" Bind nohl
+" " Removes highlight of your last search
+noremap <leader>n :nohl<CR>
+vnoremap <leader>n :nohl<CR>
+inoremap <leader>n :nohl<CR>
+
+" Make search case insensitive
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Useful settings
+set history=700
+set undolevels=700
+
+" Disable stupid backup and swap files - they trigger too many events
+" for file system watchers
+set nobackup
+set nowritebackup
+set noswapfile
